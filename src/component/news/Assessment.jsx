@@ -217,7 +217,7 @@ export const Assessment = () => {
               />
 
               <FieldHelpers
-                label="Kelganligi"
+                label="Kelganligi faqat raqam yozing!!"
                 name="kelganligi"
                 message="Iltimos Kelganligi qatorini yo'ldiring!"
               />
