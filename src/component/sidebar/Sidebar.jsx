@@ -10,7 +10,6 @@ import { useDispatch } from "react-redux";
 import { logout } from "../../redux/actions/authAction";
 // import { List } from "../list/List";
 import { AddPatient } from "../news/AddPatient";
-import { Jobs } from "../news/Jobs";
 import { Assessment } from "../news/Assessment";
 
 const { Header, Sider } = Layout;
@@ -76,9 +75,6 @@ export class Sidebar extends React.Component {
         <Layout className="site-layout">
           <LogOut />
           <Routes>
-            <Route index element={<Jobs />} />
-            <Route path="jobs" element={<Jobs />} />
-            <Route path="application" element={<AddPatient />} />
             <Route path="assessment" element={<Assessment />} />
             <Route
               path="*"
