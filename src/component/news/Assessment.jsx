@@ -30,7 +30,7 @@ export const Assessment = () => {
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [require, setRequire] = useState("");
-  const [needToCome, setNeedToCome] = useState(0);
+  // const [needToCome, setNeedToCome] = useState(0);
 
   const [form] = Form.useForm();
 

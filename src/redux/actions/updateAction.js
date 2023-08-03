@@ -1,6 +1,6 @@
 import api from "../../utility/api";
 import { getAction } from "./readAction";
-import { GET_HISTORY, GET_NEWS, GET_APPLICATION, GET_PROJECT, GET_JOBS, GET_ASSESSMENT } from "./types";
+import { GET_HISTORY,  GET_APPLICATION,  GET_JOBS, GET_ASSESSMENT } from "./types";
 
 export const updateAction =
   (path, actionType, id, data) => async (dispatch) => {

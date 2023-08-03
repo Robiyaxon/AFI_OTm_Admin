@@ -1,14 +1,14 @@
 import React from "react";
 import "antd/dist/antd.css";
 import { Button, Layout, Menu, Result } from "antd";
-import { ContactsOutlined } from "@ant-design/icons";
+// import { ContactsOutlined } from "@ant-design/icons";
 import NewspaperIcon from "@mui/icons-material/Newspaper";
 import { Routes, Route, NavLink } from "react-router-dom";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import logo from "../../assets/logo.png";
 import { useDispatch } from "react-redux";
 import { logout } from "../../redux/actions/authAction";
-import { List } from "../list/List";
+// import { List } from "../list/List";
 import { AddPatient } from "../news/AddPatient";
 import { Jobs } from "../news/Jobs";
 import { Assessment } from "../news/Assessment";

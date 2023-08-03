@@ -1,30 +1,26 @@
 import React, { useEffect, useState } from "react";
-import { Button, Form, Modal, Select, Table } from "antd";
-import { BreadcrumbHelpers, FieldHelpers } from "../../utility/Helpers";
+import { Button, Form, Modal,  Table } from "antd";
+import { BreadcrumbHelpers } from "../../utility/Helpers";
 import { Content } from "antd/lib/layout/layout";
-import AddBoxIcon from "@mui/icons-material/AddBox";
-
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { getAction } from "../../redux/actions/readAction";
-import { updateAction } from "../../redux/actions/updateAction";
+// import { updateAction } from "../../redux/actions/updateAction";
 import { deleteAction } from "../../redux/actions/deleteAction";
-import { createAction } from "../../redux/actions/createAction";
+// import { createAction } from "../../redux/actions/createAction";
 import {
   CREATE_APPLICATION,
   DELETE_APPLICATION,
-  GET_APPLICATION,
-  UPDATE_APPLICATION,
+  GET_APPLICATION
 } from "../../redux/actions/types";
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import { Option } from "antd/lib/mentions";
+import { DeleteOutlined } from "@ant-design/icons";
+// import { Option } from "antd/lib/mentions";
 
 export const AddPatient = () => {
   const dispatch = useDispatch();
   const { data } = useSelector((state) => state.applicationReducer);
 
-  const [createVisible, setCreateVisible] = useState(false);
-  const [editVisible, setEditVisible] = useState(false);
+  // const [createVisible, setCreateVisible] = useState(false);
+  // const [editVisible, setEditVisible] = useState(false);
   const [selectedID, setSelectedID] = useState(null);
   const [selectedEditID, setselectedEditID] = useState(null);
   const [visible, setVisible] = useState(false);
@@ -48,59 +44,59 @@ export const AddPatient = () => {
     setVisible(true);
     setSelectedID(id);
   };
-  const showCreateModal = () => {
-    setCreateVisible(true);
-  };
-  const showEditModal = (id) => {
-    setEditVisible(true);
-    setselectedEditID(id);
-  };
-  const createHandleOk = () => {
-    form
-      .validateFields()
-      .then((values) => {
-        form.resetFields();
-        setCreateVisible(false);
-        dispatch(createAction("api/ariza/", CREATE_APPLICATION, values));
-        // axios
-        // .post(process.env.REACT_APP_API_URL + "api/ariza/", values)
-        // .then((res) => {
-        //   axios
-        //   .get(process.env.REACT_APP_API_URL + "user/history/all")
-        //   .then(function (response) {
-        //     setData(response.data.data);
-        //   })
-        //   .catch(function (error) {
-        //     console.log(error);
-        //   });
-        // })
-        // .catch((err) => {
-        //   console.log(err);
-        // });
-      })
-      .catch((info) => {
-        console.log("Validate Failed:", info);
-      });
-  };
-  const editHandleOk = () => {
-    form
-      .validateFields()
-      .then((values) => {
-        form.resetFields();
-        setEditVisible(false);
-        dispatch(
-          updateAction(
-            "api/ariza/",
-            UPDATE_APPLICATION,
-            selectedEditID.id,
-            values
-          )
-        );
-      })
-      .catch((info) => {
-        console.log("Validate Failed:", info);
-      });
-  };
+  // const showCreateModal = () => {
+  //   setCreateVisible(true);
+  // };
+  // const showEditModal = (id) => {
+  //   setEditVisible(true);
+  //   setselectedEditID(id);
+  // };
+  // const createHandleOk = () => {
+  //   form
+  //     .validateFields()
+  //     .then((values) => {
+  //       form.resetFields();
+  //       setCreateVisible(false);
+  //       dispatch(createAction("api/ariza/", CREATE_APPLICATION, values));
+  //       // axios
+  //       // .post(process.env.REACT_APP_API_URL + "api/ariza/", values)
+  //       // .then((res) => {
+  //       //   axios
+  //       //   .get(process.env.REACT_APP_API_URL + "user/history/all")
+  //       //   .then(function (response) {
+  //       //     setData(response.data.data);
+  //       //   })
+  //       //   .catch(function (error) {
+  //       //     console.log(error);
+  //       //   });
+  //       // })
+  //       // .catch((err) => {
+  //       //   console.log(err);
+  //       // });
+  //     })
+  //     .catch((info) => {
+  //       console.log("Validate Failed:", info);
+  //     });
+  // };
+  // const editHandleOk = () => {
+  //   form
+  //     .validateFields()
+  //     .then((values) => {
+  //       form.resetFields();
+  //       setEditVisible(false);
+  //       dispatch(
+  //         updateAction(
+  //           "api/ariza/",
+  //           UPDATE_APPLICATION,
+  //           selectedEditID.id,
+  //           values
+  //         )
+  //       );
+  //     })
+  //     .catch((info) => {
+  //       console.log("Validate Failed:", info);
+  //     });
+  // };
 
   const handleOk = () => {
     setConfirmLoading(true);
@@ -112,12 +108,12 @@ export const AddPatient = () => {
     }, 1000);
   };
 
-  const createHandleCancel = () => {
-    setCreateVisible(false);
-  };
-  const editHandleCancel = () => {
-    setCreateVisible(false);
-  };
+  // const createHandleCancel = () => {
+  //   setCreateVisible(false);
+  // };
+  // const editHandleCancel = () => {
+  //   setCreateVisible(false);
+  // };
   const handleCancel = () => {
     setVisible(false);
   };
