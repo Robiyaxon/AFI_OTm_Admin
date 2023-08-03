@@ -54,7 +54,7 @@ export const Assessment = () => {
   useEffect(() => {
     dispatch(getAction("api/baholash", GET_ASSESSMENT));
     // setData2(data);
-  }, []);
+  });
 
   const showModal = (id) => {
     setVisible(true);
