@@ -9,7 +9,7 @@ import logo from "../../assets/logo.png";
 import { useDispatch } from "react-redux";
 import { logout } from "../../redux/actions/authAction";
 // import { List } from "../list/List";
-import { AddPatient } from "../news/AddPatient";
+// import { AddPatient } from "../news/AddPatient";
 import { Assessment } from "../news/Assessment";
 
 const { Header, Sider } = Layout;
