@@ -1,20 +1,19 @@
-import { CREATE_COMMENT, GET_COMMENTS } from "../actions/types";
-
+import { CREATE_BALLAR, GET_BALLAR } from "../actions/types";
 
 const initialState = {
   data: []
 };
 
-const recentCommentReducer = (state = initialState, action) => {
+const BallarReducer = (state = initialState, action) => {
   const { type, payload } = action;
 
   switch (type) {
-    case GET_COMMENTS:
+    case GET_BALLAR:
       return {
         ...state,
         data: payload
       };
-    case CREATE_COMMENT:
+    case CREATE_BALLAR:
       return {
         ...state,
         data: payload
@@ -24,4 +23,4 @@ const recentCommentReducer = (state = initialState, action) => {
   }
 };
 
-export default recentCommentReducer;
+export default BallarReducer;

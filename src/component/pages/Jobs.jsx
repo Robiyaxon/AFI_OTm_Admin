@@ -10,51 +10,34 @@ import { getAction } from "../../redux/actions/readAction";
 import { updateAction } from "../../redux/actions/updateAction";
 import { deleteAction } from "../../redux/actions/deleteAction";
 import {
-  CREATE_ASSESSMENT,
-  DELETE_ASSESSMENT,
-  GET_ASSESSMENT,
-  UPDATE_ASSESSMENT,
+  CREATE_JOBS,
+  DELETE_JOBS,
+  GET_JOBS,
+  UPDATE_JOBS,
 } from "../../redux/actions/types";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 
-export const Assessment = () => {
+export const Jobs = () => {
   const dispatch = useDispatch();
-  const { data } = useSelector((state) => state.assessmentReducer);
-  // const [data2, setData2] = useState([]);
+  const { data } = useSelector((state) => state.jobsReducer);
   const [createVisible, setCreateVisible] = useState(false);
   const [editVisible, setEditVisible] = useState(false);
   const [selectedID, setSelectedID] = useState(null);
   const [selectedEditID, setselectedEditID] = useState(null);
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
-  const [name, setName] = useState("");
-  const [address, setAddress] = useState("");
-  const [require, setRequire] = useState("");
-  // const [needToCome, setNeedToCome] = useState(0);
+  const [name, setName] = useState('')
+  const [address, setAddress] = useState('')
+  const [require, setRequire] = useState('')
+  const [contact, setContact] = useState('')
+  const [salary, setSalary] = useState('')
+  const [deadline, setDeadline] = useState('')
 
   const [form] = Form.useForm();
 
-  function sort_by_id() {
-    return function (elem1, elem2) {
-      const math1 = elem1.kelishi_kerak / 100;
-      const math2 = elem2.kelishi_kerak / 100;
-      const math1_2 = parseInt(elem1.kelganligi * math1);
-      const math2_2 = parseInt(elem2.kelganligi * math2);
-      if (math1_2 < math2_2) {
-        return -1;
-      } else if (math1_2 > math2_2) {
-        return 1;
-      } else {
-        return 0;
-      }
-    };
-  }
-  data.sort(sort_by_id());
-
   useEffect(() => {
-    dispatch(getAction("api/baholash", GET_ASSESSMENT));
-    // setData2(data);
-  });
+    dispatch(getAction("api/ishlar/", GET_JOBS));
+  }, []);
 
   const showModal = (id) => {
     setVisible(true);
@@ -66,10 +49,17 @@ export const Assessment = () => {
   const showEditModal = (id) => {
     setEditVisible(true);
     setselectedEditID(id);
-    setName(id.OTM_nomi);
-    setAddress(id.biriktirilgan_masul);
-    setRequire(id.kelganligi);
+    setName(id.nomi);
+    setAddress(id.manzil);
+    setContact(id.contact);
+    setSalary(id.maosh);
+    setRequire(id.talablar);
+    setDeadline(id.mudat);
   };
+  data.sort(function(a, b) {
+    return a.id - b.id;
+  });
+  data.reverse();
   const createHandleOk = () => {
     form
       .validateFields()
@@ -78,11 +68,11 @@ export const Assessment = () => {
         setCreateVisible(false);
         axios
           .post(
-            "https://oliytalim.pythonanywhere.com/api/baholash/",
+              "https://oliytalim.pythonanywhere.com/" + "api/ishlar/",
             values,
             {
               headers: {
-                Authorization: `Token 2fa0d2a67200eb75c181d7cef3e5ca5e9ae73f1b`,
+                Authorization: `Token 0eaaa80f89fcc13afdedc2cea7e67ca289254404	`,
               },
             }
           )
@@ -90,17 +80,17 @@ export const Assessment = () => {
             axios
               .get(
                 process.env.REACT_APP_API_URL ||
-                  "https://oliytalim.pythonanywhere.com/api/baholash/",
+                  "https://oliytalim.pythonanywhere.com/" + "api/ishlar/",
                 {
                   headers: {
                     "Content-Type": "application/json",
-                    Authorization: `Token 2fa0d2a67200eb75c181d7cef3e5ca5e9ae73f1b`,
+                    Authorization: `Token 0eaaa80f89fcc13afdedc2cea7e67ca289254404	`,
                   },
                 }
               )
               .then(function (res) {
                 dispatch({
-                  type: CREATE_ASSESSMENT,
+                  type: CREATE_JOBS,
                   payload: res.data,
                 });
               })
@@ -124,12 +114,7 @@ export const Assessment = () => {
         form.resetFields();
         setEditVisible(false);
         dispatch(
-          updateAction(
-            "api/baholash",
-            UPDATE_ASSESSMENT,
-            selectedEditID.id,
-            values
-          )
+          updateAction("api/ishlar/", UPDATE_JOBS, selectedEditID.id, values)
         );
       })
       .catch((info) => {
@@ -139,11 +124,11 @@ export const Assessment = () => {
 
   const handleOk = () => {
     setConfirmLoading(true);
-    dispatch(deleteAction("api/baholash", DELETE_ASSESSMENT, selectedID));
+    dispatch(deleteAction("api/ishlar/", DELETE_JOBS, selectedID));
     setTimeout(() => {
       setVisible(false);
       setConfirmLoading(false);
-      dispatch(getAction("api/baholash", GET_ASSESSMENT));
+      dispatch(getAction("api/ishlar/", GET_JOBS));
     }, 1000);
   };
 
@@ -159,28 +144,12 @@ export const Assessment = () => {
 
   const columns = [
     { title: "ID", dataIndex: "id", key: "id" },
-    { title: "OTM_nomi", dataIndex: "OTM_nomi", key: "OTM_nomi" },
-    {
-      title: "biriktirilgan_masul",
-      dataIndex: "biriktirilgan_masul",
-      key: "biriktirilgan_masul",
-    },
-    {
-      title: "Kelishi kerak!",
-      dataIndex: "kelishi_kerak",
-      key: "kelishi_kerak",
-    },
-    { title: "Kelganligi", dataIndex: "kelganligi", key: "kelganligi" },
-
-    {
-      title: "Kelganlik Foizi",
-      key: "kelishi_kerak",
-      dataIndex: "",
-      render: (text) => {
-        const math = text.kelishi_kerak / 100;
-        return <p>{parseInt(text.kelganligi * math)} %</p>;
-      },
-    },
+    { title: "Nomi", dataIndex: "nomi", key: "nomi" },
+    { title: "Manzil", dataIndex: "manzil", key: "manzil" },
+    { title: "Talablar", dataIndex: "talablar", key: "talablar" },
+    { title: "Maosh", dataIndex: "maosh", key: "maosh" },
+    { title: "Contact", dataIndex: "contact", key: "contact" },
+    { title: "Muddat", dataIndex: "mudat", key: "mudat" },
     {
       title: (
         <>
@@ -205,21 +174,32 @@ export const Assessment = () => {
               }}
             >
               <FieldHelpers
-                label="OTM Nomi"
-                name="OTM_nomi"
-                message="Iltimos OTM_nomi qatorini yo'ldiring!"
+                label="Nomi"
+                name="nomi"
+                message="Iltimos Nomi qatorini yo'ldiring!"
               />
 
               <FieldHelpers
-                label="Biriktirilgan Masul"
-                name="biriktirilgan_masul"
-                message="Iltimos Biriktirilgan_masul qatorini yo'ldiring!"
+                label="Manzil"
+                name="manzil"
+                message="Iltimos Manzil qatorini yo'ldiring!"
               />
 
               <FieldHelpers
-                label="Kelganligi faqat raqam yozing!!"
-                name="kelganligi"
-                message="Iltimos Kelganligi qatorini yo'ldiring!"
+                label="Talablar"
+                name="talablar"
+                message="Iltimos Talablar qatorini yo'ldiring!"
+              />
+
+              <FieldHelpers
+                label="Maosh"
+                name="maosh"
+                message="Iltimos Maosh qatorini yo'ldiring!"
+              />
+              <FieldHelpers
+                label="Contact"
+                name="contact"
+                message="Iltimos Contact haqida qatorini yo'ldiring!"
               />
             </Form>
           </Modal>
@@ -268,35 +248,63 @@ export const Assessment = () => {
               }}
               fields={[
                 {
-                  name: ["OTM_nomi"],
+                  name: ["nomi"],
                   value: name,
                 },
                 {
-                  name: ["biriktirilgan_masul"],
+                  name: ["manzil"],
                   value: address,
                 },
                 {
-                  name: ["kelganligi"],
+                  name: ["talablar"],
                   value: require,
+                },
+                {
+                  name: ["contact"],
+                  value: contact,
+                },
+                {
+                  name: ["maosh"],
+                  value: salary,
+                },
+                {
+                  name: ["mudat"],
+                  value: deadline,
                 },
               ]}
             >
               <FieldHelpers
-                label="OTM nomi"
-                name="OTM_nomi"
-                message="Iltimos OTM_nomi qatorini yo'ldiring!"
+                label="Nomi"
+                name="nomi"
+                message="Iltimos Nomi qatorini yo'ldiring!"
               />
 
               <FieldHelpers
-                label="Biriktirilgan Masul"
-                name="biriktirilgan_masul"
-                message="Iltimos Biriktirilgan_masul qatorini yo'ldiring!"
+                label="Manzil"
+                name="manzil"
+                message="Iltimos Manzil qatorini yo'ldiring!"
               />
 
               <FieldHelpers
-                label="Kelganligi"
-                name="kelganligi"
-                message="Iltimos Kelganligi qatorini yo'ldiring!"
+                label="Talablar"
+                name="talablar"
+                message="Iltimos Talablar qatorini yo'ldiring!"
+              />
+
+              <FieldHelpers
+                label="Maosh"
+                name="maosh"
+                message="Iltimos Maosh qatorini yo'ldiring!"
+              />
+              <FieldHelpers
+                label="Contact"
+                name="contact"
+                message="Iltimos Contact haqida qatorini yo'ldiring!"
+              />
+              <FieldHelpers
+                label="Muddat"
+                name="mudat"
+                message="Iltimos Muddat haqida qatorini yo'ldiring!"
               />
             </Form>
           </Modal>
@@ -308,7 +316,7 @@ export const Assessment = () => {
   return (
     <>
       <Content style={{ margin: "0 16px" }}>
-        <BreadcrumbHelpers to={"home"} from={"baholash"} />
+        <BreadcrumbHelpers to={"home"} from={"ishlar"} />
 
         <Table columns={columns} dataSource={data} />
       </Content>

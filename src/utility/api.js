@@ -6,7 +6,7 @@ const api = axios.create({
   baseURL: process.env.REACT_APP_API_URL || 'https://oliytalim.pythonanywhere.com/',
   headers: {
     "Content-Type": "application/json",
-    Authorization: `Token ` + (localStorage.getItem("token") || '2fa0d2a67200eb75c181d7cef3e5ca5e9ae73f1b'),
+    Authorization: `Token ` + (localStorage.getItem("token") || '0eaaa80f89fcc13afdedc2cea7e67ca289254404	'),
   },
 });
 

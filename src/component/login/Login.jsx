@@ -13,7 +13,7 @@ const Login = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate("/dashboard/assessment");
+      navigate("/dashboard");
     }
   }, [isAuthenticated, navigate]);
 
@@ -22,7 +22,7 @@ const Login = () => {
   };
 
   const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
+    alert("Username yoki parol hato!");
   };
 
   return (
@@ -42,12 +42,12 @@ const Login = () => {
       autoComplete="off"
     >
       <FieldHelpers
-        label="Parol"
+        label="Username"
         name="username"
         message="Iltimos Username nomi qatorini yo'ldiring!"
       />
       <FieldHelpers
-        label="Diplom Id"
+        label="Parol"
         name="password"
         message="Iltimos Parol qatorini yo'ldiring!"
         inp={false}

@@ -1,18 +1,25 @@
 import React from "react";
-import "antd/dist/antd.css";
+import { useDispatch } from "react-redux";
 import { Button, Layout, Menu, Result } from "antd";
-// import { ContactsOutlined } from "@ant-design/icons";
+import { ContactsOutlined } from "@ant-design/icons";
 import NewspaperIcon from "@mui/icons-material/Newspaper";
 import { Routes, Route, NavLink } from "react-router-dom";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
-import logo from "../../assets/logo.png";
-import { useDispatch } from "react-redux";
+
 import { logout } from "../../redux/actions/authAction";
-// import { List } from "../list/List";
-// import { AddPatient } from "../news/AddPatient";
-import { Assessment } from "../news/Assessment";
+import { Application } from "../pages/Application";
+import { Assessment } from "../pages/Assessment";
+import { Jobs } from "../pages/Jobs";
+import { News } from "../pages/News";
+
+import logo from "../../assets/logo.png";
+
+import "antd/dist/antd.css";
+import { Regions } from "../pages/Regions";
+import { Ballash } from "../pages/Ballar";
 
 const { Header, Sider } = Layout;
+
 function LogOut(params) {
   const dispatch = useDispatch();
 
@@ -66,16 +73,36 @@ export class Sidebar extends React.Component {
             )}
           </div>
           <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
-            
+            <Menu.Item key="1" icon={<ContactsOutlined />}>
+              <NavLink to={"jobs"}>Ishlar</NavLink>
+            </Menu.Item>
+            <Menu.Item key="2" icon={<NewspaperIcon />}>
+              <NavLink to={"application"}>Arizalar</NavLink>
+            </Menu.Item>
             <Menu.Item key="3" icon={<NewspaperIcon />}>
-              <NavLink to={"assessment"}>Ro`yhatga kirgizish</NavLink>
+              <NavLink to={"assessment"}>Davomat</NavLink>
+            </Menu.Item>
+            <Menu.Item key="4" icon={<NewspaperIcon />}>
+              <NavLink to={"news"}>Yangiliklar</NavLink>
+            </Menu.Item>
+            <Menu.Item key="5" icon={<NewspaperIcon />}>
+              <NavLink to={"regions"}>Hududlar</NavLink>
+            </Menu.Item>
+            <Menu.Item key="6" icon={<NewspaperIcon />}>
+              <NavLink to={"reyting"}>Muassa Reytingi</NavLink>
             </Menu.Item>
           </Menu>
         </Sider>
         <Layout className="site-layout">
           <LogOut />
           <Routes>
+            <Route index element={<Jobs />} />
+            <Route path="jobs" element={<Jobs />} />
+            <Route path="application" element={<Application />} />
             <Route path="assessment" element={<Assessment />} />
+            <Route path="news" element={<News />} />
+            <Route path="regions" element={<Regions />} />
+            <Route path="reyting" element={<Ballash />} />
             <Route
               path="*"
               element={
