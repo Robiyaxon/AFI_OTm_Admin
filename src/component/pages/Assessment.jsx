@@ -52,7 +52,7 @@ export const Assessment = () => {
 
   useEffect(() => {
     dispatch(getAction("api/baholash/", GET_ASSESSMENT));
-  }, []);
+  }, [dispatch]);
 
   const showModal = (id) => {
     setVisible(true);

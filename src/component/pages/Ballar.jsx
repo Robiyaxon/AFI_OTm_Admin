@@ -78,7 +78,7 @@ export const Ballash = () => {
               Authorization: `Token 0eaaa80f89fcc13afdedc2cea7e67ca289254404	`,
             },
           })
-          .then((res) => {
+          .then(() => {
             axios
               .get(
                 process.env.REACT_APP_API_URL ||
@@ -358,10 +358,10 @@ export const Ballash = () => {
           key: "x",
           render: (text) => (
             <>
-              <Button type="danger" onClick={(e) => showModal(text.id)}>
+              <Button type="danger" onClick={() => showModal(text.id)}>
                 <DeleteOutlined />
               </Button>
-              <Button type="primary" onClick={(e) => showEditModal(text)}>
+              <Button type="primary" onClick={() => showEditModal(text)}>
                 <EditOutlined />
               </Button>
               <Modal

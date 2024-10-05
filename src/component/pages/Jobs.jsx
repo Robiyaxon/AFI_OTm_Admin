@@ -37,7 +37,7 @@ export const Jobs = () => {
 
   useEffect(() => {
     dispatch(getAction("api/ishlar/", GET_JOBS));
-  }, []);
+  }, [dispatch]);
 
   const showModal = (id) => {
     setVisible(true);

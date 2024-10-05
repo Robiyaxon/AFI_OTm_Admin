@@ -22,7 +22,7 @@ export const Application = () => {
 
   useEffect(() => {
     dispatch(getAction("api/ariza/", GET_APPLICATION));
-  }, []);
+  }, [dispatch]);
 
   const showModal = (id) => {
     setVisible(true);
