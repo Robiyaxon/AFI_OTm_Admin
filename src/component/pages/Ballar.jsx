@@ -27,7 +27,6 @@ export const Ballash = () => {
   const [selectedEditID, setselectedEditID] = useState(null);
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
-  const [umumiy, setUmumiy] = useState("");
   const [nomi, setNomi] = useState("");
   const [oquv_ishlari, setOquv_ishlari] = useState("");
   const [yoshlar, setYoshlar] = useState("");
@@ -54,7 +53,7 @@ export const Ballash = () => {
   const showEditModal = (id) => {
     setEditVisible(true);
     setselectedEditID(id);
-    setUmumiy(id.umumiy);
+
     setNomi(id.nomi);
     setOquv_ishlari(id.oquv_ishlari);
     setYoshlar(id.yoshlar);

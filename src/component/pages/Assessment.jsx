@@ -76,24 +76,23 @@ export const Assessment = () => {
         form.resetFields();
         setCreateVisible(false);
         axios
-          .post("https://oliytalim.pythonanywhere.com/" + "api/baholash/", values, {
+          .post("https://oliytalim.pythonanywhere.com/api/baholash/", values, {
             headers: {
-              Authorization: `Token 0eaaa80f89fcc13afdedc2cea7e67ca289254404	`,
+              Authorization: `Token 0eaaa80f89fcc13afdedc2cea7e67ca289254404`,
             },
           })
           .then((res) => {
             axios
               .get(
-                process.env.REACT_APP_API_URL ||
-                  "https://oliytalim.pythonanywhere.com/" + "api/baholash/",
+                process.env.REACT_APP_API_URL || "https://oliytalim.pythonanywhere.com/api/baholash/",
                 {
                   headers: {
                     "Content-Type": "application/json",
-                    Authorization: `Token 0eaaa80f89fcc13afdedc2cea7e67ca289254404	`,
+                    Authorization: `Token 0eaaa80f89fcc13afdedc2cea7e67ca289254404`,
                   },
                 }
               )
-              .then(function (res) {
+              .then((res) => {
                 dispatch({
                   type: CREATE_ASSESSMENT,
                   payload: res.data,
@@ -316,9 +315,9 @@ export const Assessment = () => {
   return (
     <>
       <Content style={{ margin: "0 16px" }}>
-        <BreadcrumbHelpers to={"home"} from={"baholash"}  />
+        <BreadcrumbHelpers to={"home"} from={"baholash"} />
 
-        <Table columns={columns} dataSource={data} pagination={false}/>
+        <Table columns={columns} dataSource={data} pagination={false} />
       </Content>
     </>
   );

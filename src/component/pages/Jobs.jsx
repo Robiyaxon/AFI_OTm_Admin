@@ -67,16 +67,16 @@ export const Jobs = () => {
         form.resetFields();
         setCreateVisible(false);
         axios
-          .post(
-              "https://oliytalim.pythonanywhere.com/" + "api/ishlar/",
-            values,
-            {
-              headers: {
-                Authorization: `Token 0eaaa80f89fcc13afdedc2cea7e67ca289254404	`,
-              },
-            }
-          )
-          .then((res) => {
+        .post(
+          "https://oliytalim.pythonanywhere.com/api/ishlar/",
+          values,
+          {
+            headers: {
+              Authorization: `Token 0eaaa80f89fcc13afdedc2cea7e67ca289254404`,
+            },
+          }
+        )
+        .then((res) => {
             axios
               .get(
                 process.env.REACT_APP_API_URL ||
