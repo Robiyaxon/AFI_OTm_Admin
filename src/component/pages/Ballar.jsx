@@ -72,24 +72,27 @@ export const Ballash = () => {
         form.resetFields();
         setCreateVisible(false);
         axios
-          .post("https://oliytalim.pythonanywhere.com/" + "api/ballash/", values, {
+        .post(
+          "https://oliytalim.pythonanywhere.com/api/ballash/",
+          values,
+          {
             headers: {
-              Authorization: `Token 0eaaa80f89fcc13afdedc2cea7e67ca289254404	`,
+              Authorization: `Token 0eaaa80f89fcc13afdedc2cea7e67ca289254404`,
             },
-          })
-          .then(() => {
-            axios
-              .get(
-                process.env.REACT_APP_API_URL ||
-                  "https://oliytalim.pythonanywhere.com/" + "api/ballash/",
-                {
-                  headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Token 0eaaa80f89fcc13afdedc2cea7e67ca289254404	`,
-                  },
-                }
-              )
-              .then(function (res) {
+          }
+        )
+        .then((res) => {
+          axios
+          .get(
+            process.env.REACT_APP_API_URL || "https://oliytalim.pythonanywhere.com/api/ballash/",
+            {
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Token 0eaaa80f89fcc13afdedc2cea7e67ca289254404`,
+              },
+            }
+          )
+          .then((res) => {
                 dispatch({
                   type: CREATE_BALLAR,
                   payload: res.data,

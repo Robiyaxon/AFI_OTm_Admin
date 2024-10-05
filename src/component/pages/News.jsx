@@ -240,10 +240,10 @@ export const News = () => {
       key: "img_2",
       render: (text) => (
         <img
-        className={"img_news"}
-        src={"https://oliytalim.pythonanywhere.com/" + text}
-        alt="News related image"
-      />
+  className={"img_news"}
+  src={"https://oliytalim.pythonanywhere.com/" + text}
+  alt="News related to the content" // Update the alt text to be more descriptive without the word "image"
+/>
       ),
     },
     {
@@ -253,9 +253,9 @@ export const News = () => {
       render: (text) => (
         <img
         className={"img_news"}
-          src={"https://oliytalim.pythonanywhere.com/" + text}
-          alt="News related image"
-        />
+        src={"https://oliytalim.pythonanywhere.com/" + text}
+        alt="News related content" // Updated alt text to avoid redundancy
+      />
       ),
     },
     {

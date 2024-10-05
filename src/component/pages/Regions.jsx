@@ -13,7 +13,6 @@ import {
   CREATE_REGIONS,
   DELETE_REGIONS,
   GET_REGIONS,
-  UPDATE_NEWS,
   UPDATE_REGIONS,
 } from "../../redux/actions/types";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
@@ -37,7 +36,7 @@ export const Regions = () => {
 console.log(data)
   useEffect(() => {
     dispatch(getAction("api/hududlar/", GET_REGIONS));
-  }, []);
+  }, [dispatch]);
 
   if (!data.length) {
     return <h1>Waiting...</h1>;
@@ -203,9 +202,10 @@ console.log(data)
       key: "img",
       render: (text) => {
         return(
-        <img
-        className={"img_news"}
+          <img
+          className={"img_news"}
           src={text}
+          alt="Description of the news content" // Replace with a meaningful description
         />
       )},
     },
