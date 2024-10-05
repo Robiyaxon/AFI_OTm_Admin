@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Form, Input, Modal, Table } from "antd";
+import { Button, Form,  Modal, Table } from "antd";
 import { BreadcrumbHelpers, FieldHelpers } from "../../utility/Helpers";
 import { Content } from "antd/lib/layout/layout";
 import AddBoxIcon from "@mui/icons-material/AddBox";
@@ -10,11 +10,8 @@ import { getAction } from "../../redux/actions/readAction";
 import { updateAction } from "../../redux/actions/updateAction";
 import { deleteAction } from "../../redux/actions/deleteAction";
 import {
-  CREATE_NEWS,
   CREATE_REGIONS,
-  DELETE_NEWS,
   DELETE_REGIONS,
-  GET_NEWS,
   GET_REGIONS,
   UPDATE_NEWS,
   UPDATE_REGIONS,

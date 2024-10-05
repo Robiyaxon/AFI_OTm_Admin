@@ -41,7 +41,7 @@ export const Ballash = () => {
 
   useEffect(() => {
     dispatch(getAction("api/ballash/", GET_BALLAR));
-  }, []);
+  }, [dispatch]);
 
   const showModal = (id) => {
     setVisible(true);

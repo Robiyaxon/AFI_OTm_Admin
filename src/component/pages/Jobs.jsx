@@ -77,18 +77,17 @@ export const Jobs = () => {
           }
         )
         .then((res) => {
-            axios
-              .get(
-                process.env.REACT_APP_API_URL ||
-                  "https://oliytalim.pythonanywhere.com/" + "api/ishlar/",
-                {
-                  headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Token 0eaaa80f89fcc13afdedc2cea7e67ca289254404	`,
-                  },
-                }
-              )
-              .then(function (res) {
+          axios
+          .get(
+            process.env.REACT_APP_API_URL || "https://oliytalim.pythonanywhere.com/api/ishlar/",
+            {
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Token 0eaaa80f89fcc13afdedc2cea7e67ca289254404`,
+              },
+            }
+          )
+          .then(function (res) {
                 dispatch({
                   type: CREATE_JOBS,
                   payload: res.data,

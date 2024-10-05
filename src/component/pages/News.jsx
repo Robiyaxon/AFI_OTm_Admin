@@ -36,7 +36,7 @@ export const News = () => {
 
   useEffect(() => {
     dispatch(getAction("api/news/", GET_NEWS));
-  }, []);
+  }, [dispatch]);
 
   if (!data) {
     return <h1>Waiting...</h1>;
@@ -228,9 +228,10 @@ export const News = () => {
       key: "img",
       render: (text) => (
         <img
-          className={"img_news"}
-          src={"https://oliytalim.pythonanywhere.com/" + text}
-        />
+        className={"img_news"}
+        src={"https://oliytalim.pythonanywhere.com/" + text}
+        alt=""
+      />
       ),
     },
     {
@@ -240,8 +241,9 @@ export const News = () => {
       render: (text) => (
         <img
         className={"img_news"}
-          src={"https://oliytalim.pythonanywhere.com/" + text}
-        />
+        src={"https://oliytalim.pythonanywhere.com/" + text}
+        alt="News related image"
+      />
       ),
     },
     {
@@ -252,6 +254,7 @@ export const News = () => {
         <img
         className={"img_news"}
           src={"https://oliytalim.pythonanywhere.com/" + text}
+          alt="News related image"
         />
       ),
     },
